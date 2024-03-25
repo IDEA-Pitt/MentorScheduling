@@ -1,0 +1,49 @@
+import data from google forms
+
+assign data to each mentor and hour
+
+classes have 4 hours exactly so they get added first
+sort hours by length (small -> large)
+sort mentor by length(small -> large)
+
+any hours.length < 3 delete
+remove said hours from mentors
+resort mentors
+
+schedule classes (add first)
+- add 1 to hour.current
+- remove from availability
+- mentor.full = True
+- remove from mentor array
+
+next recursive/while stuff
+Checks
+- If List[hours] = empty()
+- If List[Mentors] = empty()
+- Or these IFs then ->
+- And these IFs
+- Else uhhhhhh
+- Remove extra hours 
+
+- Hopefully these are both true at the same time
+- If not, I gotta change something. Idk. More prechecks
+
+- [Hour] check if (3-current == availability.length) this should 
+  also catch when Hour was filled without removal
+    - Add these mentors to the Hour
+    - Add this hour to each of the mentors added
+    - remove this mentor from the sorted hour list
+    - resort both arrays
+    - recursive call back
+- [Mentor] check if (4-scheduled == availability.length)
+    - Add the Hours to this mentor
+    - Add this mentor to each of the hours
+    - remove this mentor from the sorted mentor list
+    - resort both arrays
+    - recursive call back
+Checks Done
+- sort(Hour[0].possibleMentors())
+- add Hour[0].possibleMentors[0] to that hour. 
+- Add that hour to the mentor. 
+- resort both lists
+- recursive call back
