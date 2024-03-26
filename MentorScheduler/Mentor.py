@@ -1,5 +1,6 @@
 class Mentor:
-    def __init__(self, availability):
+    def __init__(self, nm, availability):
+        self.name = nm
         self.hours = {}
         self.availability = availability
         self.scheduled = 0
@@ -13,7 +14,7 @@ class Mentor:
     def length(self):
         possible = 0
         for day in self.availability:#to see who is most available
-            possible += self.availability[day].length() 
+            possible += len(self.availability[day])
 
     def available(self, day, hour):
         if(hour in self.availability[day]):
