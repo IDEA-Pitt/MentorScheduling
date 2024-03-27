@@ -30,5 +30,11 @@ class Mentor:
         self.hours[day].append(hour)
         self.scheduled += 1
 
+    def unschedule(self, day, hour):
+        self.availability[day].append(hour)
+        self.hours[day].remove(hour)
+        self.scheduled -= 1
+
+
     def full(self):
         return self.scheduled >= 4
