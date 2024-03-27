@@ -2,6 +2,7 @@ from Mentor import Mentor
 from Hour import Hour #two objects to mixmatch
 from Data import getData #Pulling data from the csv (downloaded from sheet)
 
+Schedule = {}
 
 DaysOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 OpenHours = {}
@@ -36,6 +37,7 @@ def sortMentors():
     mentors.sort(key=lambda x:x.length())
     #mentors are stored in just the one list, so no fancy for loops
 
+#since We're removing stuff from the Hours list, we need to store full hours in another list
 def filter():
     #removes hours when they're full or unable to fill
     for day in DaysOfTheWeek:
@@ -49,13 +51,14 @@ def filter():
 
                 break
             if(hr.full):
+                Schedule[day] = hr
                 OpenHours[day].remove(hr)
                 break
     
     #filtering the mentors
     for peep in mentors:
         if(peep.length() - peep.scheduled < 4):
-            raise Exception(peep.name, "Unable to be scheduled")
+            raise Exception(peep.name + " is unable to be scheduled")
             
             """This should never happen (hopefully)
             if it does, rerunning may work?
@@ -72,7 +75,12 @@ def filter():
         if(peep.full):
             mentors.remove(peep)
     
-
+def isHoursEmpty():
+    for day in DaysOfTheWeek:
+        if(len(OpenHours[day]) != 0):
+            return False
+    #if all of the days are empty return true
+    return True
 
 
 
@@ -92,4 +100,15 @@ def Scheduler():
     filter()
     sortHours()
     sortMentors()
+    #next chceck if either array is empty
+    if(len(mentors) == 0 or isHoursEmpty()):
+        if(len(mentors) == 0 and isHoursEmpty()):
+            return True #each of 
+        else:
+            raise Exception("One list emptied before the other")
+            # I really really hope this doesn't happen. But it definitely is
+            #and idk how to deal with this, yet. Scheduling more hours than 4?
+            #removing hours that don't fill up before the mentors do? discuss I will
+        
+    #LOGIC TIME
 
