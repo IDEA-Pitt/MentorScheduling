@@ -1,6 +1,6 @@
 from Mentor import Mentor
 class Hour:
-    def __init__(self, time, possible=[], final=0):
+    def __init__(self, time, possible=[], final=[]):
         self.time = time
         self.possibleMentors = possible
         self.current = final #3 mentors per hour
@@ -10,3 +10,10 @@ class Hour:
     
     def add(self, mentor):
         self.possibleMentors.append(mentor)
+    
+    def schedule(self, mentor):
+        self.possibleMentors.remove(mentor)
+        self.current.append(mentor)
+    
+    def full(self):
+        return self.current == 3
