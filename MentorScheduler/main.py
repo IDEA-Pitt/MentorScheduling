@@ -1,6 +1,6 @@
 from Mentor import Mentor
-import Hour
-from Data import getData
+from Hour import Hour #two objects to mixmatch
+from Data import getData #funciton
 #get data from google forms here
 mentors = getData()
 print(len(mentors))

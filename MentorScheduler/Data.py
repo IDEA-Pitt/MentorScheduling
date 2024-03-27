@@ -1,6 +1,5 @@
 from Mentor import Mentor
 import csv #i'm just downloading the csv of the response once it's done
-import re
 
 
 def getData(filename='data.csv'):
@@ -15,6 +14,7 @@ def getData(filename='data.csv'):
         DayDict = {}
         #converting this string into useable data
         #i could use a regex here, idk how to make a search key. 
+        #wouldn't save too much time I think. Plus this is a bit nicer
         for day in Available:
             daily = []
             space = Available[day].find(" ")
