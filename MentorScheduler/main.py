@@ -33,8 +33,8 @@ def sortHours():
 
 
 #I'm going to do the same thing for sortMentors() now too
-def sortMentors(): 
-    mentors.sort(key=lambda x:x.length())
+def sortMentors(grp): 
+    grp.sort(key=lambda x:x.length())
     #mentors are stored in just the one list, so no fancy for loops
 
 #since We're removing stuff from the Hours list, we need to store full hours in another list
@@ -82,8 +82,9 @@ def isHoursEmpty():
     #if all of the days are empty return true
     return True
 
-
-
+def findHour():
+    minHour = [OpenHours[day][0] for day in DaysOfTheWeek] # a list 
+    return minHour.index(min(minHour)) #finds the index of the lest value
 """
 
 before we get into recursion some quick notes
@@ -99,7 +100,7 @@ def Scheduler():
     #Pre-logic functions
     filter()
     sortHours()
-    sortMentors()
+    sortMentors(mentors)
     #next chceck if either array is empty
     if(len(mentors) == 0 or isHoursEmpty()):
         if(len(mentors) == 0 and isHoursEmpty()):
@@ -109,6 +110,18 @@ def Scheduler():
             # I really really hope this doesn't happen. But it definitely is
             #and idk how to deal with this, yet. Scheduling more hours than 4?
             #removing hours that don't fill up before the mentors do? discuss I will
-        
+            # I wrote how I think I should go from here on the whiteboard in the lab
     #LOGIC TIME
+    VariableName = findHour()
+    BigDay = DaysOfTheWeek[VariableName]
+    #sorting the mentors inside the hour object
+    sortMentors(OpenHours[BigDay][0].possibleMentors)
+    #picking the mentor to schedule
+    mtor = OpenHours[BigDay][0].possibleMentors[0]
+    #scheduling the hour and the mentor
+    mtor.schedule(BigDay, OpenHours[BigDay][0].time)
+    OpenHours[BigDay][0].schedule(mtor)
+
+    #recursion :(
+    return Scheduler()
 
