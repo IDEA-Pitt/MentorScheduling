@@ -47,3 +47,27 @@ Checks Done
 - Add that hour to the mentor. 
 - resort both lists
 - recursive call back
+
+Bactracking Outline
+May get stuck in an infinitie loop i think where it just switch two mentors back and forth 
+for a while. Stick backtrack in with a timeout exception. If the exception is raised, no valid
+schedule can be found (I think)
+
+Find mentors willing to work 4+ hours
+Find shared availability with either mentors who aren't schedulr 4 hours
+or with hours that don't have 3 mentors.
+
+If no shared availability
+(hour isn't full)
+go through available mentors in that hour,
+if mentors willing to do  4+ hours match availability with mentors who are in that hour's available
+switch mentors and add the mentor to the hour
+
+(mentor isn't available)
+find an hour to add back in. 
+for the Hours in the availability, check those mentors in the hour. If any of those mentors have
+availability for an hour that isn't scheduled for. Add that hour back
+switch mentors, add the other mentor to that hour. 
+
+check if we're Done
+BNE backtrack

@@ -3,6 +3,7 @@ from Hour import Hour #two objects to mixmatch
 from Data import getData #Pulling data from the csv (downloaded from sheet)
 
 Schedule = {}
+MentorsDone = []
 
 DaysOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 OpenHours = {}
@@ -74,6 +75,7 @@ def filter():
 
         if(peep.full):
             mentors.remove(peep)
+            MentorsDone.append(peep)
     
 def isHoursEmpty():
     for day in DaysOfTheWeek:
@@ -124,4 +126,22 @@ def Scheduler():
 
     #recursion :(
     return Scheduler()
+
+def backtrack():
+
+    
+
+    #end of function
+    if(len(mentors) == 0 and isHoursEmpty()):
+        return True #each of 
+    else:
+        return backtrack()
+
+"""Everyone's favorite part: Backtracking (ugh)"""
+try:
+    Scheduler()
+except:
+    #backtrack in here
+    print("backtracking here")
+    backtrack()
 
