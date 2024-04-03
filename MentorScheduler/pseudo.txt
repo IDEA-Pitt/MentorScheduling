@@ -60,7 +60,7 @@ or with hours that don't have 3 mentors.
 If no shared availability
 (hour isn't full)
 go through available mentors in that hour,
-if mentors willing to do  4+ hours match availability with mentors who are in that hour's available
+if mentors willing to do  4+ hours, or mentors not scheduled match availability with mentors who are in that hour's available
 switch mentors and add the mentor to the hour
 
 (mentor isn't available)

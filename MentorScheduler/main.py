@@ -2,6 +2,10 @@ from Mentor import Mentor
 from Hour import Hour #two objects to mixmatch
 from Data import getData #Pulling data from the csv (downloaded from sheet)
 
+#adding a timeout exception to my backtracking formula
+import multiprocessing
+import time
+
 Schedule = {}
 MentorsDone = []
 
@@ -143,5 +147,14 @@ try:
 except:
     #backtrack in here
     print("backtracking here")
-    backtrack()
+
+    #I saw a cool way to use a function decorator but I wasn't sure how to implement it
+
+    b = multiprocessing.Process(target=backtrack)
+    b.join(30) #If the process is still alive after 30s
+    if b.is_alive(): #if the backtracking process is still running after 30 seconds
+        b.terminate()
+        #b.kill() -> target was recursive so this may be better
+        b.join() #brings all the processes back into this main function
+
 
