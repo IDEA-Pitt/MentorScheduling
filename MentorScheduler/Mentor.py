@@ -4,6 +4,7 @@ class Mentor:
         self.hours = {}
         self.availability = availability
         self.scheduled = 0
+        self.above = False
         """
         { "Monday" : [9, 10, 14, 15, 16], 
           "Tuesday": [12, 13, 18, 19], 

@@ -131,8 +131,10 @@ def Scheduler():
     #recursion :(
     return Scheduler()
 
+#going through and filling in each hour with 3 mentors, and each mentor with four hours
+#moving this around that fill in the spots left by the scheduler function
 def backtrack():
-
+    
     
 
     #end of function
@@ -142,6 +144,7 @@ def backtrack():
         return backtrack()
 
 """Everyone's favorite part: Backtracking (ugh)"""
+#work in progress
 try:
     Scheduler()
 except:
